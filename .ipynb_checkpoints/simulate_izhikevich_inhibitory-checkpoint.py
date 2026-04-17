@@ -1,22 +1,18 @@
+
 import numpy as np
 import matplotlib.pyplot as plt
 
 def izhikevich_sim(a, b, c, d, I_fn, T=300.0, dt=0.1, v0=-65.0):
     """
-    Simulates the Izhikevich neuron model:
-        dv/dt = 0.04v^2 + 5v + 140 - u + I
-        du/dt = a(bv - u)
-        if v >= 30 mV: v <- c, u <- u + d
+    Simulate the Izhikevich neuron model.
+    dv/dt = 0.04v^2 + 5v + 140 - u + I
+    du/dt = a(bv - u)
+    if v >= 30 mV: v <- c, u <- u + d
 
     Parameters
     ----------
     a, b, c, d : float
-        Izhikevich parameters:
-        a : (decay) rate constant for recovery variable 'u' - typically 0.2
-        b : sensitivity of recovery variable 'u' - typically 0.02
-        c : reset value for voltage 'v' after each spike - typically -65mV - caused by fast K+ conductance
-        d : reset value of recovery var 'u' after spiking - typically ~2 - caused by slow Na+ and K+ conductance
-        
+        Izhikevich parameters.
     I_fn : callable
         Function of time t (ms) returning input current.
     T : float
@@ -24,7 +20,7 @@ def izhikevich_sim(a, b, c, d, I_fn, T=300.0, dt=0.1, v0=-65.0):
     dt : float
         Time step in ms.
     v0 : float
-        Initial membrane potential in mV.
+        Initial membrane potential.
     """
     n = int(T / dt)
     t = np.arange(n) * dt
